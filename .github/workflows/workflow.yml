@@ -12,8 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    container:
-      image: python3.9-slim
+    container: python3.9-slim
 
     steps:
       - name: Checkout
