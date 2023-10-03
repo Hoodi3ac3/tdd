@@ -64,3 +64,17 @@ class CounterTest(TestCase):
 
         # Check that the value of the counter matches the expected initial value (0)
         self.assertEqual(read_result.json['my_counter'], 0)
+
+    def test_delete_a_counter(self):
+        """It should delete a counter"""
+        # Create a counter
+        create_result = self.client.post('/counters/my_counter')
+        self.assertEqual(create_result.status_code, status.HTTP_201_CREATED)
+
+        # Delete the counter
+        delete_result = self.client.delete('/counters/my_counter')
+        self.assertEqual(delete_result.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Attempt to read the deleted counter (should result in a 404 error)
+        read_result = self.client.get('/counters/my_counter')
+        self.assertEqual(read_result.status_code, status.HTTP_404_NOT_FOUND)
