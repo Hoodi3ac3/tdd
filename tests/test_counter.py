@@ -19,6 +19,7 @@ from src.counter import app
 # we need to import the file that contains the status codes
 from src import status
 
+
 class CounterTest(TestCase):
     """Counter tests"""
 
@@ -63,4 +64,3 @@ class CounterTest(TestCase):
 
         # Check that the value of the counter matches the expected initial value (0)
         self.assertEqual(read_result.json['my_counter'], 0)
-
